@@ -58,5 +58,4 @@ Welcome to my central repository for **Web Scraping, Data Pipeline & Automation 
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/mdhossainali866-cloud/3-month-scraping-journey.git](https://github.com/mdhossainali866-cloud/3-month-scraping-journey.git)
-   cd 3-month-scraping-journey
+   git clone https://github.com/mdhossainali866-cloud/3-month-scraping-journey.git
