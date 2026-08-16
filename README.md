@@ -1,61 +1,102 @@
-# 🚀 Python Web Scraping & Data Extraction Portfolio
+<div align="center">
 
-Welcome to my central repository for **Web Scraping, Data Pipeline & Automation Engineering**. This showcase tracks my 3-month journey building scalable data extraction tools, handling dynamic websites, bypassing anti-bot measures, and exporting production-ready datasets.
+# 🚀 Automated Data Pipeline & Web Scraping Journey
+
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)
+![Status](https://img.shields.io/badge/Pipeline-Active-success?style=for-the-badge)
+![License](https://img.shields.io/badge/Data_Export-CSV_%2F_JSON-orange?style=for-the-badge)
+
+**A 3-Month Production-Grade Showcase of Web Scraping, Hidden API Parsing, Data Pipeline Engineering & Automation.**
+
+[Explore Projects](#-project-showcase) • [Tech Stack](#-tech-stack--architecture) • [How to Run](#-environment-setup)
 
 ---
 
-## 🛠️ Tech Stack & Key Competencies
+</div>
 
-* **Core Language:** Python 3
-* **Libraries & Frameworks:** `requests`, `beautifulsoup4` (BS4)
-* **Data Processing & Export:** `csv`, `sys`
-* **Key Skills:** HTML Parsing, Multi-Page Pagination, UTF-8 Encoding Handling, HTTP Status Validation, Structured Data Export (Excel / CSV Compatible)
+## 🏗️ System Architecture & Workflow
+
+┌────────────────┐     ┌──────────────────────┐     ┌──────────────────────┐
+│  Target Source │ ──> │ Extraction Pipeline  │ ──> │ Data Transformation │
+│ (HTML/REST API)│     │  (Requests / BS4)    │     │  (Pandas/CSV/JSON)   │
+└────────────────┘     └──────────────────────┘     └──────────────────────┘
+│
+▼
+┌──────────────────────┐
+│  Historical Logging  │
+│   (UTF-8-SIG CSV)    │
+└──────────────────────┘
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+| Category | Tools / Libraries | Usage |
+| :--- | :--- | :--- |
+| **Core Language** | Python 3 | Main Script Execution & Automation |
+| **Data Fetching** | `requests` | HTTP Protocol Handling, Status Handling, REST API Queries |
+| **HTML Parsing** | `beautifulsoup4` | DOM Tree Traversal, Dynamic Attribute Extraction |
+| **Data Engine** | `csv`, `json`, `os` | Historical Append Logging, Payload Extraction, UTF-8 Management |
+| **Time Handling** | `datetime` | Precise Time-Series Data Stamping |
 
 ---
 
 ## 📂 Project Showcase
 
-### 📌 Project 1: Quotes & Author Metadata Scraper (Week 1)
-> **Automated extraction of quotes, authors, and category tags.**
+### 📌 Week 1: Quotes & Author Metadata Scraper
+* **Type:** Static HTML Scraper
+* **Source:** [Quotes to Scrape](https://quotes.toscrape.com/)
+* **Files:** [`quotes_scraper.py`](./quotes_scraper.py) | [`quotes.csv`](./quotes.csv)
 
-* **Target Site:** [Quotes to Scrape](https://quotes.toscrape.com/)
-* **Script File:** [`quotes_scraper.py`](./quotes_scraper.py)
-* **Sample Output Dataset:** [`quotes.csv`](./quotes.csv)
-
-#### Key Technical Highlights:
-* **Encoding Optimization:** Reconfigured stdout stream to `UTF-8` using `sys.stdout.reconfigure()` to avoid cross-platform encoding bugs.
-* **Efficient Tag Parsing:** Utilized Python list comprehension (`', '.join([...])`) to combine dynamic dynamic multi-element tags into clean strings.
-* **Clean Terminal Output:** Formatted string outputs with structured separators for quick debugging and logging.
+**Key Highlights:**
+* Handled cross-platform standard output stream encoding via `sys.stdout.reconfigure(encoding='utf-8')`.
+* Clean string serialization for multi-element metadata using Python list comprehensions.
 
 ---
 
-### 📌 Project 2: Multi-Page E-Commerce Catalog Scraper with CSV Pipeline (Week 2)
-> **Paginated data extraction pipeline saving e-commerce data directly into Excel-friendly CSV formats.**
+### 📌 Week 2: Multi-Page E-Commerce Catalog Scraper
+* **Type:** Paginated HTML Scraper
+* **Source:** [Books to Scrape](https://books.toscrape.com/)
+* **Files:** [`project2_books.py`](./project2_books.py) | [`books_data.csv`](./books_data.csv)
 
-* **Target Site:** [Books to Scrape](https://books.toscrape.com/)
-* **Script File:** [`project2_books.py`](./project2_books.py)
-* **Sample Output Dataset:** [`books_data.csv`](./books_data.csv)
-
-#### Key Technical Highlights:
-* **Automated Pagination Loop:** Built a dynamic loop scraping across multiple catalog pages (`page-1` to `page-5`).
-* **Robust Attribute Extraction:** Extracted full, unabbreviated book titles directly from HTML `title` attributes rather than truncated text nodes.
-* **HTTP Error Handling:** Implemented status code validation (`response.status_code == 200`) to guarantee execution safety against broken URLs.
-* **Excel-Compatible Data Export:** Exported datasets using `utf-8-sig` encoding to preserve special currency symbols (e.g., `£`) when opened in Microsoft Excel.
+**Key Highlights:**
+* Implemented dynamic multi-page pagination loops across sequential catalog endpoints.
+* Extracted unabbreviated product titles from raw HTML attributes rather than truncated visual elements.
+* Exported datasets using `utf-8-sig` encoding to prevent character corruption when opened in Microsoft Excel.
 
 ---
 
-## 📊 Sample Data Output Preview (`books_data.csv`)
+### 📌 Week 3: Real-Time Crypto Tracker & Time-Series Engine
+* **Type:** Hidden/Public REST API Scraper
+* **Source:** CoinGecko Public REST API
+* **Files:** [`project3_crypto.py`](./project3_crypto.py) | [`crypto_history.csv`](./crypto_history.csv)
 
-| Title | Price | Availability |
-| :--- | :--- | :--- |
-| A Light in the Attic | £51.77 | In stock |
-| Tipping the Velvet | £53.74 | In stock |
-| Soumission | £50.10 | In stock |
+**Key Highlights:**
+* **Bypassed DOM Parsing:** Directly targeted JSON API endpoints for zero-latency, structure-safe data fetching.
+* **Smart Historical Logging Engine:** Used File I/O checks (`os.path.isfile`) with append mode (`'a'`) to build a historical time-series dataset without duplicate header rows.
+* **Financial Data Formatting:** Applied precision float formatting (`:,.2f`) for formatted currency outputs in USD ($) and BDT (৳).
 
 ---
 
-## ⚙️ How to Run These Projects Locally
+## 📊 Live Sample Data Output Preview (`crypto_history.csv`)
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/mdhossainali866-cloud/3-month-scraping-journey.git
+| Timestamp | BTC_USD | BTC_BDT | ETH_USD | ETH_BDT | SOL_USD | SOL_BDT |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **2026-08-16 20:36:00** | $65,420.50 | ৳7,850,460.00 | $3,450.20 | ৳414,024.00 | $145.80 | ৳17,496.00 |
+
+---
+
+## ⚙️ Environment Setup & Execution
+
+```bash
+# 1. Clone the repository
+git clone [https://github.com/mdhossainali866-cloud/3-month-scraping-journey.git](https://github.com/mdhossainali866-cloud/3-month-scraping-journey.git)
+
+# 2. Navigate into project folder
+cd 3-month-scraping-journey
+
+# 3. Install required packages
+pip install requests beautifulsoup4
+
+# 4. Run Week 3 Real-Time Crypto Pipeline
+python project3_crypto.py
