@@ -16,16 +16,18 @@
 
 ## 🏗️ System Architecture & Workflow
 
+```text
 ┌────────────────┐     ┌──────────────────────┐     ┌──────────────────────┐
 │  Target Source │ ──> │ Extraction Pipeline  │ ──> │ Data Transformation │
 │ (HTML/REST API)│     │  (Requests / BS4)    │     │  (Pandas/CSV/JSON)   │
 └────────────────┘     └──────────────────────┘     └──────────────────────┘
-│
-▼
-┌──────────────────────┐
-│  Historical Logging  │
-│   (UTF-8-SIG CSV)    │
-└──────────────────────┘
+                                                               │
+                                                               ▼
+                                                    ┌──────────────────────┐
+                                                    │  Historical Logging  │
+                                                    │   (UTF-8-SIG CSV)    │
+                                                    └──────────────────────┘
+```
 
 ---
 
@@ -37,7 +39,7 @@
 | **Data Fetching** | `requests` | HTTP Protocol Handling, Status Handling, REST API Queries |
 | **HTML Parsing** | `beautifulsoup4` | DOM Tree Traversal, Dynamic Attribute Extraction |
 | **Data Engine** | `csv`, `json`, `os` | Historical Append Logging, Payload Extraction, UTF-8 Management |
-| **Time Handling** | `datetime` | Precise Time-Series Data Stamping |
+| **Time & Delays** | `datetime`, `time` | Precise Datetime File Stamping & Polite Throttling |
 
 ---
 
@@ -78,6 +80,19 @@
 
 ---
 
+### 📌 Week 4: Multi-Source Hybrid Tech News Aggregator
+* **Type:** Hybrid Data Pipeline (REST API + Dynamic HTML Scraping)
+* **Sources:** [Hacker News Firebase API](https://hacker-news.firebaseio.com/) | [Dev.to](https://dev.to/)
+* **Files:** [`tech_news_scraper.py`](./tech_news_scraper.py) | [`tech_news_2026-08-29.csv`](./tech_news_2026-08-29.csv)
+
+**Key Highlights:**
+* **Hybrid Extraction Architecture:** Combined JSON REST API querying and HTML DOM Parsing into a single unified extraction pipeline.
+* **Dynamic Datetime File Stamping:** Automated daily dataset exports using `datetime.now()` to construct time-stamped CSV filenames.
+* **Relative URL Normalization:** Implemented link prefix logic to resolve full HTTP paths for relative Dev.to post links.
+* **Rate Limiting Handling:** Configured polite request pauses (`time.sleep`) to adhere to API consumption best practices.
+
+---
+
 ## 📊 Live Sample Data Output Preview (`crypto_history.csv`)
 
 | Timestamp | BTC_USD | BTC_BDT | ETH_USD | ETH_BDT | SOL_USD | SOL_BDT |
@@ -98,5 +113,7 @@ cd 3-month-scraping-journey
 # 3. Install required packages
 pip install requests beautifulsoup4
 
-# 4. Run Week 3 Real-Time Crypto Pipeline
+# 4. Run Projects
 python project3_crypto.py
+python tech_news_scraper.py
+```
