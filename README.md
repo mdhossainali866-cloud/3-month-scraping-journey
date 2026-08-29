@@ -105,7 +105,7 @@
 
 ```bash
 # 1. Clone the repository
-git clone [https://github.com/mdhossainali866-cloud/3-month-scraping-journey.git](https://github.com/mdhossainali866-cloud/3-month-scraping-journey.git)
+git clone https://github.com/mdhossainali866-cloud/3-month-scraping-journey.git
 
 # 2. Navigate into project folder
 cd 3-month-scraping-journey
